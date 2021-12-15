@@ -75,6 +75,7 @@ func worker(id int, wg *sync.WaitGroup, jobs <-chan string) {
 			cmd1 := exec.Command(
 				ffmpegPath,
 				"-i", filename,
+				"-threads", "1",
 				"-c:v", "libvpx-vp9",
 				"-b:v", fmt.Sprintf("%dk", params.Br),
 				"-minrate", fmt.Sprintf("%dk", params.MinBr),
@@ -89,6 +90,7 @@ func worker(id int, wg *sync.WaitGroup, jobs <-chan string) {
 			cmd2 := exec.Command(
 				ffmpegPath,
 				"-i", filename,
+				"-threads", "1",
 				"-c:v", "libvpx-vp9",
 				"-b:v", fmt.Sprintf("%dk", params.Br),
 				"-minrate", fmt.Sprintf("%dk", params.MinBr),
